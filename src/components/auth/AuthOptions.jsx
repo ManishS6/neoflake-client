@@ -18,7 +18,7 @@ function AuthOptions () {
     };
     useEffect(()=>{
         const getItemsCount = async () => {
-            const itemsResponse = await axios.get('http://localhost:5000/items/total');
+            const itemsResponse = await axios.get('https://boiling-inlet-40705.herokuapp.com/items/total');
             console.log(itemsResponse.data.count)
             setCount(itemsResponse.data.count)
           }

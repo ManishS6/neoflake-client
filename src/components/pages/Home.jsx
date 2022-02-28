@@ -26,9 +26,9 @@ function Home () {
               localStorage.setItem("auth-token", "");
               token = "";
             }
-            const tokenResponse = await axios.post('http://localhost:5000/users/tokenIsValid', null, {headers: {"x-auth-token": token}});
+            const tokenResponse = await axios.post('https://boiling-inlet-40705.herokuapp.com/users/tokenIsValid', null, {headers: {"x-auth-token": token}});
             if (tokenResponse.data) {
-              const userRes = await axios.get("http://localhost:5000/users/", {
+              const userRes = await axios.get("https://boiling-inlet-40705.herokuapp.com/users/", {
                 headers: { "x-auth-token": token },
               });
               var updatedForm = { token,user: userRes.data.user}
@@ -42,18 +42,18 @@ function Home () {
         if(!user) history.push("/login");
         const getItems = async () => {
             if(currentPage===0){
-                const itemsResponse = await axios.get("http://localhost:5000/items");
+                const itemsResponse = await axios.get("https://boiling-inlet-40705.herokuapp.com/items");
                 console.log(itemsResponse.data)
                 setItems(itemsResponse.data)
             } else {
-                const itemsResponse = await axios.get(`http://localhost:5000/items?page=${currentPage}`);
+                const itemsResponse = await axios.get(`https://boiling-inlet-40705.herokuapp.com/items?page=${currentPage}`);
                 console.log(itemsResponse.data)
                 setItems(itemsResponse.data)
             }
         }
         getItems()
         const getTotalPages = async () => {
-            const pageResponse  = await axios.get("http://localhost:5000/users/total", {
+            const pageResponse  = await axios.get("https://boiling-inlet-40705.herokuapp.com/users/total", {
                 headers: { "x-auth-token": token },
               });
             setPages(Math.ceil(parseInt(pageResponse.data.count)/4))
